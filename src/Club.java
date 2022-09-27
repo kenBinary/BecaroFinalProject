@@ -7,14 +7,14 @@ public class Club {
     public String president;
     public String vicePresident;
 
-    public void addMember(String memberInfo){
-
+    public void addMember(Member memberInfo){
+        memberList.add(memberInfo);
     }
     public void addPresident(Member presidentMember){
         memberList.add(presidentMember);
     }
-    public void addVicePresident(String vicePresidentInfo){
-
+    public void addVicePresident(Member vicePresidentMember){
+        memberList.add(vicePresidentMember);
     }
     public void removeMember(String memberInfo){
 

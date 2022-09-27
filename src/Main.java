@@ -39,12 +39,19 @@ public class Main extends JFrame {
                     oPanel.getChoreographerField().setEditable(true);
                     oPanel.getAddChoreographerButton().setEnabled(true);
                     oPanel.getAddChoreographerDepartment().setEnabled(true);
+                    oPanel.getSecretaryField().setText("");
+                    oPanel.getSecretaryField().setEditable(false);
+                    oPanel.getAddSecretaryButton().setEnabled(false);
+                    oPanel.getAddSecretaryDepartment().setEnabled(false);
                 }
                 else{
                     oPanel.getChoreographerField().setText("");
                     oPanel.getChoreographerField().setEditable(false);
                     oPanel.getAddChoreographerButton().setEnabled(false);
                     oPanel.getAddChoreographerDepartment().setEnabled(false);
+                    oPanel.getSecretaryField().setEditable(true);
+                    oPanel.getAddSecretaryButton().setEnabled(true);
+                    oPanel.getAddSecretaryDepartment().setEnabled(true);
                 }
 
             }
@@ -80,6 +87,105 @@ public class Main extends JFrame {
                 }
             }
         });
+
+        oPanel.getAddVicePresidentButton().addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                if(!oPanel.getVicePresidentField().getText().isEmpty()){
+                    String position = "Vice President";
+                    String name = oPanel.getVicePresidentField().getText();
+                    String memberDepartment = String.valueOf(oPanel.addVicePresidentDepartment.getSelectedItem());
+                    Member newMember = new Member(position,name,memberDepartment);
+
+                    if(oPanel.getClubComboBoxIndex()==0){
+                        clubView.getMathPanel().addNewRecord(newMember,mathClub);
+                        mathClub.addVicePresident(newMember);
+                        newFileHandler.appendFile(newMember.toString(),"MathClub.csv");
+                    }
+                    else if (oPanel.getClubComboBoxIndex()==1) {
+                        clubView.getDancePanel().addNewRecord(newMember,danceClub);
+                        danceClub.addVicePresident(newMember);
+                        newFileHandler.appendFile(newMember.toString(),"DanceClub.csv");
+
+                    }
+                    else if(oPanel.getClubComboBoxIndex()==2){
+                        clubView.getPhotographyPanel().addNewRecord(newMember,photographyClub);
+                        photographyClub.addVicePresident(newMember);
+                        newFileHandler.appendFile(newMember.toString(),"PhotographyClub.csv");
+
+                    }
+
+                }
+            }
+        });
+
+        oPanel.getAddMemberButton().addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                if(!oPanel.getMemberField().getText().isEmpty()){
+                    String position = "Member";
+                    String name = oPanel.getMemberField().getText();
+                    String memberDepartment = String.valueOf(oPanel.addMemberDepartment.getSelectedItem());
+                    Member newMember = new Member(position,name,memberDepartment);
+
+                    if(oPanel.getClubComboBoxIndex()==0){
+                        clubView.getMathPanel().addNewRecord(newMember,mathClub);
+                        mathClub.addMember(newMember);
+                        newFileHandler.appendFile(newMember.toString(),"MathClub.csv");
+                    }
+                    else if (oPanel.getClubComboBoxIndex()==1) {
+                        clubView.getDancePanel().addNewRecord(newMember,danceClub);
+                        danceClub.addMember(newMember);
+                        newFileHandler.appendFile(newMember.toString(),"DanceClub.csv");
+
+                    }
+                    else if(oPanel.getClubComboBoxIndex()==2){
+                        clubView.getPhotographyPanel().addNewRecord(newMember,photographyClub);
+                        photographyClub.addMember(newMember);
+                        newFileHandler.appendFile(newMember.toString(),"PhotographyClub.csv");
+                    }
+
+                }
+            }
+        });
+        oPanel.getAddSecretaryButton().addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                if(!oPanel.getSecretaryField().getText().isEmpty()){
+                    String position = "Secretary";
+                    String name = oPanel.getSecretaryField().getText();
+                    String memberDepartment = String.valueOf(oPanel.addSecretaryDepartment.getSelectedItem());
+                    Member newMember = new Member(position,name,memberDepartment);
+
+                    if(oPanel.getClubComboBoxIndex()==0){
+                        clubView.getMathPanel().addNewRecord(newMember,mathClub);
+                        mathClub.addSecretary(newMember);
+                        newFileHandler.appendFile(newMember.toString(),"MathClub.csv");
+                    }
+                    else if(oPanel.getClubComboBoxIndex()==2){
+                        clubView.getPhotographyPanel().addNewRecord(newMember,photographyClub);
+                        photographyClub.addSecretary(newMember);
+                        newFileHandler.appendFile(newMember.toString(),"PhotographyClub.csv");
+                    }
+
+                }
+            }
+        });
+        oPanel.getAddChoreographerButton().addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                if(!oPanel.getChoreographerField().getText().isEmpty()){
+                    String position = "Choreographer";
+                    String name = oPanel.getChoreographerField().getText();
+                    String memberDepartment = String.valueOf(oPanel.addChoreographerDepartment.getSelectedItem());
+                    Member newMember = new Member(position,name,memberDepartment);
+
+                    if(oPanel.getClubComboBoxIndex()==1){
+                        clubView.getDancePanel().addNewRecord(newMember,danceClub);
+                        danceClub.addClubChoreographer(newMember);
+                        newFileHandler.appendFile(newMember.toString(),"DanceClub.csv");
+                    }
+
+                }
+            }
+        });
+
 
 
         oPanel.getAddMember().addActionListener(new ActionListener(){
