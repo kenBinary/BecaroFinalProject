@@ -7,16 +7,17 @@ public class MathClubPanel extends JPanel {
     DefaultTableModel model = new DefaultTableModel(){
         @Override
         public boolean isCellEditable(int row, int column) {
-            //all cells false
             return false;
         }
-    };;
+    };
     FileHandler fileHandler = new FileHandler();
     MathClubPanel(MathClub mathClub){
         this.setLayout(new BorderLayout());
+
         String[] columnNames = { "Id", "Position","Name", "Department" };
         model.setColumnIdentifiers(columnNames);
         JTable mathClubData = new JTable(model);
+
         JScrollPane scrollPane = new JScrollPane(mathClubData);
         this.add(scrollPane,BorderLayout.CENTER);
         initializeRecord(mathClub);

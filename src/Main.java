@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.EventListener;
 
 public class Main extends JFrame {
     MathClub mathClub = new MathClub();
@@ -190,32 +189,7 @@ public class Main extends JFrame {
 
         oPanel.getAddMember().addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-
-
-//                clubView.getMathPanel().initializeRecord();
-
-//                for (int i = 0; i < oPanel.getAddMemberTextFields().length ; i++) {
-//                    if (!oPanel.getAddMemberTextFields()[i].getText().isEmpty()){
-//
-//                        String memberPosition = oPanel.getMathClubPositions()[i];
-//                        String memberName = oPanel.getAddMemberTextFields()[i].getText();
-//                        String memberDepartment = String.valueOf(oPanel.getDepartmentComboBox().getSelectedItem());
-//
-//
-//                        Member newMember = new Member(memberPosition,memberName,memberDepartment);
-//                        newFileHandler.appendFile(newMember.toString());
-//
-//
-//
-//                        Object[] newRecord = {memberPosition,memberName,memberDepartment};
-//                        clubView.getMathPanel().addNewRecord(newRecord);
-//
-//
-//
-//
-//                    }
-//                }
-
+                System.out.println(mathClub.getMemberList().get(0));
             }
         });
 

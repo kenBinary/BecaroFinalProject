@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Club {
     public ArrayList<Member> memberList = new ArrayList<>();
@@ -36,7 +34,7 @@ public class Club {
     }
     public void printList(){
         for(Member member: memberList){
-            member.toString();
+            System.out.println(member.toString());
         }
     }
 }
