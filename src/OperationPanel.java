@@ -12,7 +12,7 @@ public class OperationPanel extends JPanel {
 
     JTextField choreographerField = new JTextField();
     JButton addMember = new JButton("Add Member");
-    String[] departments = {"PS","CLE","CAE","CAFAE","CASE","CBAE","CCE","CCJE","CEE","CHE","CHSE","CTE","TS","BED","None"};
+    String[] departments = {"PS","CLE","CAE","CAFAE","CASE","CBAE","CCE","CCJE","CEE","CHE","CHSE","CTE","TS","BED"};
 //    JTextField[] addMemberTextFields = {presidentField,vicePresidentField,memberField,secretaryField};
     JButton addPresidentButton = new JButton("Add");
     JButton addVicePresidentButton = new JButton("Add");

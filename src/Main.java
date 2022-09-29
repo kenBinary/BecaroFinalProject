@@ -238,39 +238,43 @@ public class Main extends JFrame {
                 String position = sOPanel.getPositionComboBox().getSelectedItem().toString();
                 String department = sOPanel.getDepartmentComboBox().getSelectedItem().toString();
                 Member newMember = new Member(position,name,department);
-                if(sOPanel.clubs.getSelectedIndex()==0){
-                    mathClub.getMemberList().set(memberIndex,newMember);
-                    clubView.getMathPanel().removeData();
-                    clubView.getMathPanel().updateTableRecord(mathClub);
-                    File myObj = new File("MathClub.csv");
-                    myObj.delete();
-                    for (Member member: mathClub.getMemberList()) {
-                        System.out.println(member.toString());
-                        newFileHandler.appendFile(member.toString(),"MathClub.csv");
+                if(!sOPanel.getNameField().getText().isEmpty()){
+                    if(sOPanel.clubs.getSelectedIndex()==0){
+                        mathClub.getMemberList().set(memberIndex,newMember);
+                        clubView.getMathPanel().removeData();
+                        clubView.getMathPanel().updateTableRecord(mathClub);
+                        File myObj = new File("MathClub.csv");
+                        myObj.delete();
+                        for (Member member: mathClub.getMemberList()) {
+                            System.out.println(member.toString());
+                            newFileHandler.appendFile(member.toString(),"MathClub.csv");
+                        }
                     }
-                }
-                else if(sOPanel.clubs.getSelectedIndex()==1){
-                    danceClub.getMemberList().set(memberIndex,newMember);
-                    clubView.getDancePanel().removeData();
-                    clubView.getDancePanel().updateTableRecord(danceClub);
-                    File myObj = new File("DanceClub.csv");
-                    myObj.delete();
-                    for (Member member: danceClub.getMemberList()) {
-                        System.out.println(member.toString());
-                        newFileHandler.appendFile(member.toString(),"DanceClub.csv");
+                    else if(sOPanel.clubs.getSelectedIndex()==1){
+                        danceClub.getMemberList().set(memberIndex,newMember);
+                        clubView.getDancePanel().removeData();
+                        clubView.getDancePanel().updateTableRecord(danceClub);
+                        File myObj = new File("DanceClub.csv");
+                        myObj.delete();
+                        for (Member member: danceClub.getMemberList()) {
+                            System.out.println(member.toString());
+                            newFileHandler.appendFile(member.toString(),"DanceClub.csv");
+                        }
                     }
-                }
-                else{
-                    photographyClub.getMemberList().set(memberIndex,newMember);
-                    clubView.getPhotographyPanel().removeData();
-                    clubView.getPhotographyPanel().updateTableRecord(photographyClub);
-                    File myObj = new File("PhotographyClub.csv");
-                    myObj.delete();
-                    for (Member member: photographyClub.getMemberList()) {
-                        System.out.println(member.toString());
-                        newFileHandler.appendFile(member.toString(),"PhotographyClub.csv");
+                    else{
+                        photographyClub.getMemberList().set(memberIndex,newMember);
+                        clubView.getPhotographyPanel().removeData();
+                        clubView.getPhotographyPanel().updateTableRecord(photographyClub);
+                        File myObj = new File("PhotographyClub.csv");
+                        myObj.delete();
+                        for (Member member: photographyClub.getMemberList()) {
+                            System.out.println(member.toString());
+                            newFileHandler.appendFile(member.toString(),"PhotographyClub.csv");
+                        }
                     }
+
                 }
+
             }
         });
         sOPanel.getDelete().addActionListener(new ActionListener() {
@@ -278,40 +282,43 @@ public class Main extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int memberIndex = sOPanel.getDeleteIndex().getSelectedIndex();
                 Member newMember;
-                if (sOPanel.clubs.getSelectedIndex()==0){
-                    newMember = mathClub.getMemberList().get(memberIndex);
-                    mathClub.getMemberList().remove(memberIndex);
-                    clubView.getMathPanel().removeData();
-                    clubView.getMathPanel().updateTableRecord(mathClub);
-                    File myObj = new File("MathClub.csv");
-                    myObj.delete();
-                    for (Member member: mathClub.getMemberList()) {
-                        newFileHandler.appendFile(member.toString(),"MathClub.csv");
+                if(!sOPanel.getNameDeleteField().getText().isEmpty()){
+                    if (sOPanel.clubs.getSelectedIndex()==0){
+                        newMember = mathClub.getMemberList().get(memberIndex);
+                        mathClub.getMemberList().remove(memberIndex);
+                        clubView.getMathPanel().removeData();
+                        clubView.getMathPanel().updateTableRecord(mathClub);
+                        File myObj = new File("MathClub.csv");
+                        myObj.delete();
+                        for (Member member: mathClub.getMemberList()) {
+                            newFileHandler.appendFile(member.toString(),"MathClub.csv");
+                        }
                     }
-                }
-                else if(sOPanel.clubs.getSelectedIndex()==1){
-                    newMember = danceClub.getMemberList().get(memberIndex);
-                    danceClub.getMemberList().remove(memberIndex);
-                    clubView.getDancePanel().removeData();
-                    clubView.getDancePanel().updateTableRecord(danceClub);
-                    File myObj = new File("DanceClub.csv");
-                    myObj.delete();
-                    for (Member member: danceClub.getMemberList()) {
-                        newFileHandler.appendFile(member.toString(),"DanceClub.csv");
-                    }
+                    else if(sOPanel.clubs.getSelectedIndex()==1){
+                        newMember = danceClub.getMemberList().get(memberIndex);
+                        danceClub.getMemberList().remove(memberIndex);
+                        clubView.getDancePanel().removeData();
+                        clubView.getDancePanel().updateTableRecord(danceClub);
+                        File myObj = new File("DanceClub.csv");
+                        myObj.delete();
+                        for (Member member: danceClub.getMemberList()) {
+                            newFileHandler.appendFile(member.toString(),"DanceClub.csv");
+                        }
 
-                }
-                else{
-                    newMember = photographyClub.getMemberList().get(memberIndex);
-                    photographyClub.getMemberList().remove(memberIndex);
-                    clubView.getPhotographyPanel().removeData();
-                    clubView.getPhotographyPanel().updateTableRecord(photographyClub);
-                    File myObj = new File("PhotographyClub.csv");
-                    myObj.delete();
-                    for (Member member: photographyClub.getMemberList()) {
-                        newFileHandler.appendFile(member.toString(),"PhotographyClub.csv");
+                    }
+                    else{
+                        newMember = photographyClub.getMemberList().get(memberIndex);
+                        photographyClub.getMemberList().remove(memberIndex);
+                        clubView.getPhotographyPanel().removeData();
+                        clubView.getPhotographyPanel().updateTableRecord(photographyClub);
+                        File myObj = new File("PhotographyClub.csv");
+                        myObj.delete();
+                        for (Member member: photographyClub.getMemberList()) {
+                            newFileHandler.appendFile(member.toString(),"PhotographyClub.csv");
+                        }
                     }
                 }
+
 
 
                 sOPanel.nameDeleteField.setText("");

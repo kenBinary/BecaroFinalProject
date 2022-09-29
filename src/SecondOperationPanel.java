@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SecondOperationPanel extends JPanel {
-    String[] departments = {"PS","CLE","CAE","CAFAE","CASE","CBAE","CCE","CCJE","CEE","CHE","CHSE","CTE","TS","BED","None"};
+    String[] departments = {"PS","CLE","CAE","CAFAE","CASE","CBAE","CCE","CCJE","CEE","CHE","CHSE","CTE","TS","BED"};
     String[] clubNames = {"Math Club","Dance Club","Photography Club"};
     String[] positions = {"President","Vice President","Member","Secretary","Choreographer"};
     DefaultComboBoxModel modelPositions = new DefaultComboBoxModel(new String[] {"President","Vice President","Member","Secretary"});
@@ -93,6 +93,9 @@ public class SecondOperationPanel extends JPanel {
         }
         this.revalidate();
         this.repaint();
+    }
+    public JTextField getNameDeleteField(){
+        return nameDeleteField;
     }
 
     public JComboBox<String> getPositionComboBox() {
