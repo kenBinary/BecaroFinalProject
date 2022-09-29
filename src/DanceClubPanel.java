@@ -30,7 +30,7 @@ public class DanceClubPanel extends JPanel {
         this.repaint();
     }
     public void initializeRecord(DanceClub danceClub){
-        File file = new File("MathClub.csv");
+        File file = new File("PhotographyClub.csv");
         if (file.exists()){
             danceClub.addMembersToList(fileHandler.readFile("DanceClub.csv"));
             for (int i = 0; i < danceClub.getNumberOfMembers(); i++) {

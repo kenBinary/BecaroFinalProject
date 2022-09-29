@@ -30,7 +30,7 @@ public class PhotographyClubPanel extends JPanel {
         this.repaint();
     }
     public void initializeRecord(PhotographyClub photographyClub){
-        File file = new File("MathClub.csv");
+        File file = new File("PhotographyClub.csv");
         if (file.exists()){
             photographyClub.addMembersToList(fileHandler.readFile("PhotographyClub.csv"));
             for (int i = 0; i < photographyClub.getNumberOfMembers(); i++) {
