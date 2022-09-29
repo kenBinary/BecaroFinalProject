@@ -3,6 +3,7 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
 public class Main extends JFrame {
     MathClub mathClub = new MathClub();
@@ -12,6 +13,8 @@ public class Main extends JFrame {
 
     OperationPanel oPanel = new OperationPanel();
     ClubPanel clubView = new ClubPanel(mathClub,danceClub,photographyClub);
+    ActionListener updateIndex;
+    ActionListener deleteIndex;
     Main(){
         oPanel.getChoreographerField().setText("");
         oPanel.getChoreographerField().setEditable(false);
@@ -56,7 +59,7 @@ public class Main extends JFrame {
                 }
             }
         });
-        sOPanel.getUpdateIndex().addActionListener(updateIndex);
+
 
 
         oPanel.getAddPresidentButton().addActionListener(new ActionListener(){
@@ -188,7 +191,8 @@ public class Main extends JFrame {
         });
 
 
-
+        sOPanel.getUpdateIndex().addActionListener(updateIndex);
+        sOPanel.getDeleteIndex().addActionListener(deleteIndex);
         oPanel.getAddMember().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -198,20 +202,199 @@ public class Main extends JFrame {
         sOPanel.getClubComboBox().addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 sOPanel.getUpdateIndex().removeActionListener(updateIndex);
+                sOPanel.getDeleteIndex().removeActionListener(deleteIndex);
                 clubView.setTabbedPane(sOPanel.getClubComboBoxIndex());
                 if(sOPanel.getClubComboBoxIndex() == 1){
                     sOPanel.setComboBoxItems(danceClub.getNumberOfMembers());
+                    if(sOPanel.getModelPositions().getIndexOf("Choreographer")==-1&& sOPanel.getModelPositions().getIndexOf("Secretary")>0){
+                        sOPanel.getPositionComboBox().addItem("Choreographer");
+                        sOPanel.getPositionComboBox().removeItem("Secretary");
+                    }
                 }
                 else if(sOPanel.getClubComboBoxIndex()==2){
                     sOPanel.setComboBoxItems(photographyClub.getNumberOfMembers());
+                    if(sOPanel.getModelPositions().getIndexOf("Secretary")==-1){
+                        sOPanel.getPositionComboBox().addItem("Secretary");
+                    }
+                    sOPanel.getPositionComboBox().removeItem("Choreographer");
                 }
                 else{
+                    if(sOPanel.getModelPositions().getIndexOf("Secretary")==-1){
+                        sOPanel.getPositionComboBox().addItem("Secretary");
+                    }
+                    sOPanel.getPositionComboBox().removeItem("Choreographer");
                     sOPanel.setComboBoxItems(mathClub.getNumberOfMembers());
                 }
                 sOPanel.getUpdateIndex().addActionListener(updateIndex);
+                sOPanel.getDeleteIndex().addActionListener(deleteIndex);
             }
         });
 
+        sOPanel.getUpdate().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int memberIndex = sOPanel.getUpdateIndex().getSelectedIndex();
+                String name = sOPanel.getNameField().getText();
+                String position = sOPanel.getPositionComboBox().getSelectedItem().toString();
+                String department = sOPanel.getDepartmentComboBox().getSelectedItem().toString();
+                Member newMember = new Member(position,name,department);
+                if(sOPanel.clubs.getSelectedIndex()==0){
+                    mathClub.getMemberList().set(memberIndex,newMember);
+                    clubView.getMathPanel().removeData();
+                    clubView.getMathPanel().updateTableRecord(mathClub);
+                    File myObj = new File("MathClub.csv");
+                    myObj.delete();
+                    for (Member member: mathClub.getMemberList()) {
+                        System.out.println(member.toString());
+                        newFileHandler.appendFile(member.toString(),"MathClub.csv");
+                    }
+                }
+                else if(sOPanel.clubs.getSelectedIndex()==1){
+                    danceClub.getMemberList().set(memberIndex,newMember);
+                    clubView.getDancePanel().removeData();
+                    clubView.getDancePanel().updateTableRecord(danceClub);
+                    File myObj = new File("DanceClub.csv");
+                    myObj.delete();
+                    for (Member member: danceClub.getMemberList()) {
+                        System.out.println(member.toString());
+                        newFileHandler.appendFile(member.toString(),"DanceClub.csv");
+                    }
+                }
+                else{
+                    photographyClub.getMemberList().set(memberIndex,newMember);
+                    clubView.getPhotographyPanel().removeData();
+                    clubView.getPhotographyPanel().updateTableRecord(photographyClub);
+                    File myObj = new File("PhotographyClub.csv");
+                    myObj.delete();
+                    for (Member member: photographyClub.getMemberList()) {
+                        System.out.println(member.toString());
+                        newFileHandler.appendFile(member.toString(),"PhotographyClub.csv");
+                    }
+                }
+            }
+        });
+        sOPanel.getDelete().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int memberIndex = sOPanel.getDeleteIndex().getSelectedIndex();
+                Member newMember;
+                if (sOPanel.clubs.getSelectedIndex()==0){
+                    newMember = mathClub.getMemberList().get(memberIndex);
+                    mathClub.getMemberList().remove(memberIndex);
+                    clubView.getMathPanel().removeData();
+                    clubView.getMathPanel().updateTableRecord(mathClub);
+                    File myObj = new File("MathClub.csv");
+                    myObj.delete();
+                    for (Member member: mathClub.getMemberList()) {
+                        newFileHandler.appendFile(member.toString(),"MathClub.csv");
+                    }
+                }
+                else if(sOPanel.clubs.getSelectedIndex()==1){
+                    newMember = danceClub.getMemberList().get(memberIndex);
+                    danceClub.getMemberList().remove(memberIndex);
+                    clubView.getDancePanel().removeData();
+                    clubView.getDancePanel().updateTableRecord(danceClub);
+                    File myObj = new File("DanceClub.csv");
+                    myObj.delete();
+                    for (Member member: danceClub.getMemberList()) {
+                        newFileHandler.appendFile(member.toString(),"DanceClub.csv");
+                    }
+
+                }
+                else{
+                    newMember = photographyClub.getMemberList().get(memberIndex);
+                    photographyClub.getMemberList().remove(memberIndex);
+                    clubView.getPhotographyPanel().removeData();
+                    clubView.getPhotographyPanel().updateTableRecord(photographyClub);
+                    File myObj = new File("PhotographyClub.csv");
+                    myObj.delete();
+                    for (Member member: photographyClub.getMemberList()) {
+                        newFileHandler.appendFile(member.toString(),"PhotographyClub.csv");
+                    }
+                }
+
+
+                sOPanel.nameDeleteField.setText("");
+
+            }
+        });
+
+
+         updateIndex = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int memberPositionIndex;
+                int memberIndex = sOPanel.getUpdateIndex().getSelectedIndex();
+                String memberName;
+                String memberDepartment;
+
+
+                if(sOPanel.clubs.getSelectedIndex()==0){
+                    memberName = mathClub.getMemberList().get(memberIndex).getName();
+                    memberDepartment = mathClub.getMemberList().get(memberIndex).getDepartment();
+                    sOPanel.getDepartmentComboBox().setSelectedIndex(sOPanel.indexOf(memberDepartment));
+                    sOPanel.getNameField().setText(memberName);
+                    for (int i = 0; i < sOPanel.getPositions().length ; i++) {
+                        if (sOPanel.getPositions()[i].equals(mathClub.getMemberList().get(memberIndex).getPosition())){
+                            memberPositionIndex = i;
+                            sOPanel.getPositionComboBox().setSelectedIndex(memberPositionIndex);
+                            break;
+                        }
+                    }
+                }
+                else if(sOPanel.clubs.getSelectedIndex()==1){
+                    memberName = danceClub.getMemberList().get(memberIndex).getName();
+                    memberDepartment = danceClub.getMemberList().get(memberIndex).getDepartment();
+                    sOPanel.getDepartmentComboBox().setSelectedIndex(sOPanel.indexOf(memberDepartment));
+                    sOPanel.getNameField().setText(memberName);
+                    for (int i = 0; i < sOPanel.getPositions().length ; i++) {
+                        if (sOPanel.getPositions()[i].equals(danceClub.getMemberList().get(memberIndex).getPosition())){
+                            memberPositionIndex = i;
+                            sOPanel.getPositionComboBox().setSelectedIndex(memberPositionIndex);
+                            break;
+                        }
+                    }
+                }
+                else{
+                    memberName = photographyClub.getMemberList().get(memberIndex).getName();
+                    memberDepartment = photographyClub.getMemberList().get(memberIndex).getDepartment();
+                    sOPanel.getDepartmentComboBox().setSelectedIndex(sOPanel.indexOf(memberDepartment));
+                    sOPanel.getNameField().setText(memberName);
+                    for (int i = 0; i < sOPanel.getPositions().length ; i++) {
+                        if (sOPanel.getPositions()[i].equals(photographyClub.getMemberList().get(memberIndex).getPosition())){
+                            memberPositionIndex = i;
+                            sOPanel.getPositionComboBox().setSelectedIndex(memberPositionIndex);
+                            break;
+                        }
+                    }
+
+                }
+            }
+        };
+
+         deleteIndex = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int memberIndex;
+                String memberName;
+                if(sOPanel.clubs.getSelectedIndex()==0){
+                    memberIndex = sOPanel.getDeleteIndex().getSelectedIndex();
+                    memberName = mathClub.getMemberList().get(memberIndex).getName();
+                    sOPanel.nameDeleteField.setText(memberName);
+                }
+                else if(sOPanel.clubs.getSelectedIndex()==1){
+                    memberIndex = sOPanel.getDeleteIndex().getSelectedIndex();
+                    memberName = danceClub.getMemberList().get(memberIndex).getName();
+                    sOPanel.nameDeleteField.setText(memberName);
+                }
+                else{
+                    memberIndex = sOPanel.getDeleteIndex().getSelectedIndex();
+                    memberName = photographyClub.getMemberList().get(memberIndex).getName();
+                    sOPanel.nameDeleteField.setText(memberName);
+
+                }
+            }
+        };
 
 
         frame.setResizable(false);
@@ -220,18 +403,8 @@ public class Main extends JFrame {
         frame.setSize(770,600);
         frame.setVisible(true);
     }
-    ActionListener updateIndex = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            int memberIndex = sOPanel.getUpdateIndex().getSelectedIndex();
-            String memberName = mathClub.getMemberList().get(memberIndex).getName();
-            String memberPosition = mathClub.getMemberList().get(memberIndex).getPosition();
-            String memberDepartment = mathClub.getMemberList().get(memberIndex).getDepartment();
-            sOPanel.getDepartmentComboBox().setSelectedIndex(sOPanel.indexOf(memberDepartment));
-            sOPanel.getNameField().setText(memberName);
-            sOPanel.getPositionField().setText(memberPosition);
-        }
-    };
+
+
 
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {

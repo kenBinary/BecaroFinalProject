@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.io.File;
 
 public class PhotographyClubPanel extends JPanel {
     DefaultTableModel model = new DefaultTableModel(){
@@ -10,7 +11,7 @@ public class PhotographyClubPanel extends JPanel {
             //all cells false
             return false;
         }
-    };;
+    };
     FileHandler fileHandler = new FileHandler();
 
     PhotographyClubPanel(PhotographyClub photographyClub){
@@ -29,7 +30,25 @@ public class PhotographyClubPanel extends JPanel {
         this.repaint();
     }
     public void initializeRecord(PhotographyClub photographyClub){
-        photographyClub.addMembersToList(fileHandler.readFile("PhotographyClub.csv"));
+        File file = new File("MathClub.csv");
+        if (file.exists()){
+            photographyClub.addMembersToList(fileHandler.readFile("PhotographyClub.csv"));
+            for (int i = 0; i < photographyClub.getNumberOfMembers(); i++) {
+                model.addRow(photographyClub.memberList.get(i).toObjectArray(i+1));
+            }
+            this.revalidate();
+            this.repaint();
+        }
+
+    }
+    public void removeData(){
+        for (int i = model.getRowCount() - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+        this.revalidate();
+        this.repaint();
+    }
+    public void updateTableRecord(PhotographyClub photographyClub){
         for (int i = 0; i < photographyClub.getNumberOfMembers(); i++) {
             model.addRow(photographyClub.memberList.get(i).toObjectArray(i+1));
         }

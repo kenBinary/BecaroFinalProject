@@ -13,7 +13,7 @@ public class OperationPanel extends JPanel {
     JTextField choreographerField = new JTextField();
     JButton addMember = new JButton("Add Member");
     String[] departments = {"PS","CLE","CAE","CAFAE","CASE","CBAE","CCE","CCJE","CEE","CHE","CHSE","CTE","TS","BED","None"};
-    JTextField[] addMemberTextFields = {presidentField,vicePresidentField,memberField,secretaryField};
+//    JTextField[] addMemberTextFields = {presidentField,vicePresidentField,memberField,secretaryField};
     JButton addPresidentButton = new JButton("Add");
     JButton addVicePresidentButton = new JButton("Add");
     JButton addMemberButton = new JButton("Add");
@@ -74,7 +74,7 @@ public class OperationPanel extends JPanel {
 
 
         //add member button
-        addMember.setBounds(35,220,125,35);
+//        addMember.setBounds(35,220,125,35);
 
 
         this.add(addMemberTitle);
@@ -104,7 +104,7 @@ public class OperationPanel extends JPanel {
         this.add(addSecretaryDepartment);
         this.add(addChoreographerDepartment);
 
-        this.add(addMember);
+//        this.add(addMember);
 
 
     }
@@ -135,15 +135,15 @@ public class OperationPanel extends JPanel {
         return addChoreographerButton;
     }
 
-    public JComboBox<String> getAddPresidentDepartments(){
-        return addPresidentDepartments;
-    }
-    public JComboBox<String> getAddVicePresidentDepartment(){
-        return addVicePresidentDepartment;
-    }
-    public JComboBox<String> getAddMemberDepartment(){
-        return addMemberDepartment;
-    }
+//    public JComboBox<String> getAddPresidentDepartments(){
+//        return addPresidentDepartments;
+//    }
+//    public JComboBox<String> getAddVicePresidentDepartment(){
+//        return addVicePresidentDepartment;
+//    }
+//    public JComboBox<String> getAddMemberDepartment(){
+//        return addMemberDepartment;
+//    }
     public JComboBox<String> getAddSecretaryDepartment(){
         return addSecretaryDepartment;
     }
@@ -167,11 +167,11 @@ public class OperationPanel extends JPanel {
     }
 
 
-    public JTextField[] getAddMemberTextFields(){
-        return addMemberTextFields;
-    }
-    public String[] getMathClubPositions(){
-        return mathClubPositions;
-    }
+//    public JTextField[] getAddMemberTextFields(){
+//        return addMemberTextFields;
+//    }
+//    public String[] getMathClubPositions(){
+//        return mathClubPositions;
+//    }
 
 }

@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 
 public class ClubPanel extends JTabbedPane {
     MathClubPanel mathPanel;
@@ -29,8 +28,8 @@ public class ClubPanel extends JTabbedPane {
     public PhotographyClubPanel getPhotographyPanel() {
         return photographyPanel;
     }
-    public JPanel[] getClubPanels(){
-        JPanel[] clubs = {mathPanel,dancePanel,photographyPanel};
-        return clubs;
-    }
+//    public JPanel[] getClubPanels(){
+//        JPanel[] clubs = {mathPanel,dancePanel,photographyPanel};
+//        return clubs;
+//    }
 }

@@ -4,6 +4,10 @@ import java.awt.*;
 public class SecondOperationPanel extends JPanel {
     String[] departments = {"PS","CLE","CAE","CAFAE","CASE","CBAE","CCE","CCJE","CEE","CHE","CHSE","CTE","TS","BED","None"};
     String[] clubNames = {"Math Club","Dance Club","Photography Club"};
+    String[] positions = {"President","Vice President","Member","Secretary","Choreographer"};
+    DefaultComboBoxModel modelPositions = new DefaultComboBoxModel(new String[] {"President","Vice President","Member","Secretary"});
+    JComboBox<String> positionComboBox = new JComboBox(modelPositions);
+
     JComboBox<String> clubs =new  JComboBox<>(clubNames);
 
     JButton update = new JButton("Update");
@@ -11,9 +15,7 @@ public class SecondOperationPanel extends JPanel {
     JComboBox<Integer> updateIndex = new JComboBox<>();
     JComboBox<Integer> deleteIndex = new JComboBox<>();
     JTextField nameField = new JTextField();
-    JTextField positionField = new JTextField();
     JTextField nameDeleteField = new JTextField();
-
     JLabel nameLabel = new JLabel("Name");
     JLabel departmentLabel = new JLabel("Department");
     JLabel positionLabel = new JLabel("Position");
@@ -37,11 +39,12 @@ public class SecondOperationPanel extends JPanel {
         update.setBounds(305,90,65,30);
 
         positionLabel.setBounds(68,110,90,30);
-        positionField.setBounds(65,133,173,30);
+        positionComboBox.setBounds(65,133,173,30);
 
         nameDeleteLabel.setBounds(68,155,40,30);
         deleteIndex.setBounds(5,177,60,30);
         nameDeleteField.setBounds(65,177,173,30);
+        nameDeleteField.setEditable(false);
         delete.setBounds(235,177,75,30);
 
 
@@ -56,10 +59,15 @@ public class SecondOperationPanel extends JPanel {
         this.add(departmentComboBox);
         this.add(nameLabel);
         this.add(nameDeleteField);
+        this.add(positionComboBox);
         this.add(clubs);
-        this.add(positionField);
         this.add(positionLabel);
     }
+
+    public DefaultComboBoxModel getModelPositions() {
+        return modelPositions;
+    }
+
     public int indexOf(String department){
         int index = 0;
         for (int i = 0; i < departments.length ; i++) {
@@ -69,6 +77,9 @@ public class SecondOperationPanel extends JPanel {
             }
         }
         return index;
+    }
+    public String[] getPositions(){
+        return positions;
     }
     public JButton getUpdate(){
         return update;
@@ -83,6 +94,11 @@ public class SecondOperationPanel extends JPanel {
         this.revalidate();
         this.repaint();
     }
+
+    public JComboBox<String> getPositionComboBox() {
+        return positionComboBox;
+    }
+
     public void removeComboBoxItems(){
         updateIndex.removeAllItems();
         deleteIndex.removeAllItems();
@@ -92,9 +108,9 @@ public class SecondOperationPanel extends JPanel {
     public JButton getDelete(){
         return delete;
     }
-    public String[] getDepartments(){
-        return departments;
-    }
+//    public String[] getDepartments(){
+//        return departments;
+//    }
     public JComboBox<Integer> getUpdateIndex(){
         return updateIndex;
     }
@@ -110,9 +126,7 @@ public class SecondOperationPanel extends JPanel {
     public JTextField getNameField(){
         return nameField;
     }
-    public JTextField getPositionField(){
-        return  positionField;
-    }
+
     public JComboBox<String> getDepartmentComboBox(){
         return departmentComboBox;
     }

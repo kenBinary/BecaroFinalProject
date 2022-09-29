@@ -4,7 +4,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class FileHandler {
     public void appendFile(String mem,String filename) {
@@ -18,7 +17,7 @@ public class FileHandler {
 
 
     public ArrayList<Member> readFile(String fileName){
-        ArrayList<Member> members = new ArrayList<Member>();
+        ArrayList<Member> members = new ArrayList<>();
         String lineRead;
         String[] splitLine;
         Member newMember;
