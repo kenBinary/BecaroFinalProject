@@ -11,10 +11,12 @@ public class SecondOperationPanel extends JPanel {
     JComboBox<Integer> updateIndex = new JComboBox<>();
     JComboBox<Integer> deleteIndex = new JComboBox<>();
     JTextField nameField = new JTextField();
-    JTextField deleteField = new JTextField();
+    JTextField positionField = new JTextField();
+    JTextField nameDeleteField = new JTextField();
 
     JLabel nameLabel = new JLabel("Name");
     JLabel departmentLabel = new JLabel("Department");
+    JLabel positionLabel = new JLabel("Position");
     JLabel nameDeleteLabel = new JLabel("Name");
 
     JComboBox<String> departmentComboBox = new JComboBox<>(departments);
@@ -34,10 +36,13 @@ public class SecondOperationPanel extends JPanel {
         departmentComboBox.setBounds(235,90,75,30);
         update.setBounds(305,90,65,30);
 
-        nameDeleteLabel.setBounds(68,128,40,30);
-        deleteIndex.setBounds(5,150,60,30);
-        deleteField.setBounds(65,150,173,30);
-        delete.setBounds(235,150,75,30);
+        positionLabel.setBounds(68,110,90,30);
+        positionField.setBounds(65,133,173,30);
+
+        nameDeleteLabel.setBounds(68,155,40,30);
+        deleteIndex.setBounds(5,177,60,30);
+        nameDeleteField.setBounds(65,177,173,30);
+        delete.setBounds(235,177,75,30);
 
 
         this.add(updateDelete);
@@ -46,12 +51,24 @@ public class SecondOperationPanel extends JPanel {
         this.add(updateIndex);
         this.add(deleteIndex);
         this.add(nameField);
-        this.add(deleteField);
+        this.add(nameDeleteLabel);
         this.add(departmentLabel);
         this.add(departmentComboBox);
         this.add(nameLabel);
-        this.add(nameDeleteLabel);
+        this.add(nameDeleteField);
         this.add(clubs);
+        this.add(positionField);
+        this.add(positionLabel);
+    }
+    public int indexOf(String department){
+        int index = 0;
+        for (int i = 0; i < departments.length ; i++) {
+            if(departments[i].equals(department)){
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
     public JButton getUpdate(){
         return update;
@@ -75,6 +92,9 @@ public class SecondOperationPanel extends JPanel {
     public JButton getDelete(){
         return delete;
     }
+    public String[] getDepartments(){
+        return departments;
+    }
     public JComboBox<Integer> getUpdateIndex(){
         return updateIndex;
     }
@@ -86,6 +106,15 @@ public class SecondOperationPanel extends JPanel {
     }
     public int getClubComboBoxIndex(){
         return clubs.getSelectedIndex();
+    }
+    public JTextField getNameField(){
+        return nameField;
+    }
+    public JTextField getPositionField(){
+        return  positionField;
+    }
+    public JComboBox<String> getDepartmentComboBox(){
+        return departmentComboBox;
     }
 
 }

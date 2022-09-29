@@ -187,7 +187,6 @@ public class Main extends JFrame {
             }
         });
 
-        oPanel.getAddSecretaryButton().putClientProperty("test",3);
 
 
         oPanel.getAddMember().addActionListener(new ActionListener() {
@@ -224,7 +223,13 @@ public class Main extends JFrame {
     ActionListener updateIndex = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println(sOPanel.getUpdateIndex().getSelectedItem());
+            int memberIndex = sOPanel.getUpdateIndex().getSelectedIndex();
+            String memberName = mathClub.getMemberList().get(memberIndex).getName();
+            String memberPosition = mathClub.getMemberList().get(memberIndex).getPosition();
+            String memberDepartment = mathClub.getMemberList().get(memberIndex).getDepartment();
+            sOPanel.getDepartmentComboBox().setSelectedIndex(sOPanel.indexOf(memberDepartment));
+            sOPanel.getNameField().setText(memberName);
+            sOPanel.getPositionField().setText(memberPosition);
         }
     };
 
