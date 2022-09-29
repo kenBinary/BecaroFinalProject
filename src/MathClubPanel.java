@@ -14,7 +14,7 @@ public class MathClubPanel extends JPanel {
     MathClubPanel(MathClub mathClub){
         this.setLayout(new BorderLayout());
 
-        String[] columnNames = { "Id", "Position","Name", "Department" };
+        String[] columnNames = { "#", "Position","Name", "Department" };
         model.setColumnIdentifiers(columnNames);
         JTable mathClubData = new JTable(model);
 

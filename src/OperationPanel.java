@@ -104,7 +104,7 @@ public class OperationPanel extends JPanel {
         this.add(addSecretaryDepartment);
         this.add(addChoreographerDepartment);
 
-//        this.add(addMember);
+        this.add(addMember);
 
 
     }

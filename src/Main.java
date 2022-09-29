@@ -1,12 +1,14 @@
 import javax.swing.*;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class Main extends JFrame {
     MathClub mathClub = new MathClub();
     DanceClub danceClub = new DanceClub();
     PhotographyClub photographyClub = new PhotographyClub();
+    SecondOperationPanel sOPanel;
 
     OperationPanel oPanel = new OperationPanel();
     ClubPanel clubView = new ClubPanel(mathClub,danceClub,photographyClub);
@@ -20,12 +22,12 @@ public class Main extends JFrame {
         frame.setLayout(null);
         oPanel.setBounds(0,0,370,600);
         oPanel.setLayout(null);
-        SecondOperationPanel sOPanel = new SecondOperationPanel();
+        sOPanel = new SecondOperationPanel();
         sOPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.BLACK));
         sOPanel.setBounds(0,300,370,300);
+        sOPanel.setComboBoxItems(mathClub.getNumberOfMembers());
         oPanel.add(sOPanel);
         frame.add(oPanel);
-
 
         clubView.setBounds(370,0,400,600);
         clubView.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Color.BLACK));
@@ -52,9 +54,9 @@ public class Main extends JFrame {
                     oPanel.getAddSecretaryButton().setEnabled(true);
                     oPanel.getAddSecretaryDepartment().setEnabled(true);
                 }
-
             }
         });
+        sOPanel.getUpdateIndex().addActionListener(updateIndex);
 
 
         oPanel.getAddPresidentButton().addActionListener(new ActionListener(){
@@ -185,11 +187,29 @@ public class Main extends JFrame {
             }
         });
 
+        oPanel.getAddSecretaryButton().putClientProperty("test",3);
 
 
-        oPanel.getAddMember().addActionListener(new ActionListener(){
+        oPanel.getAddMember().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        sOPanel.getClubComboBox().addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                System.out.println(mathClub.getMemberList().get(0));
+                sOPanel.getUpdateIndex().removeActionListener(updateIndex);
+                clubView.setTabbedPane(sOPanel.getClubComboBoxIndex());
+                if(sOPanel.getClubComboBoxIndex() == 1){
+                    sOPanel.setComboBoxItems(danceClub.getNumberOfMembers());
+                }
+                else if(sOPanel.getClubComboBoxIndex()==2){
+                    sOPanel.setComboBoxItems(photographyClub.getNumberOfMembers());
+                }
+                else{
+                    sOPanel.setComboBoxItems(mathClub.getNumberOfMembers());
+                }
+                sOPanel.getUpdateIndex().addActionListener(updateIndex);
             }
         });
 
@@ -201,6 +221,12 @@ public class Main extends JFrame {
         frame.setSize(770,600);
         frame.setVisible(true);
     }
+    ActionListener updateIndex = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println(sOPanel.getUpdateIndex().getSelectedItem());
+        }
+    };
 
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {

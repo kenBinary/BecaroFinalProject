@@ -15,7 +15,7 @@ public class DanceClubPanel extends JPanel {
 
     DanceClubPanel(DanceClub danceClub){
         this.setLayout(new BorderLayout());
-        String[] columnNames = { "Id", "Position","Name", "Department" };
+        String[] columnNames = { "#", "Position","Name", "Department" };
         model.setColumnIdentifiers(columnNames);
         JTable danceCLubData = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(danceCLubData);
