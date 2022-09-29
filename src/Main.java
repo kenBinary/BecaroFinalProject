@@ -73,29 +73,39 @@ public class Main extends JFrame {
                     Member newMember = new Member(position,name,memberDepartment);
 
                     if(oPanel.getClubComboBoxIndex()==0){
-                        clubView.getMathPanel().addNewRecord(newMember,mathClub);
-                        mathClub.addPresident(newMember);
-                        newFileHandler.appendFile(newMember.toString(),"MathClub.csv");
-                        sOPanel.setComboBoxItems(mathClub.getNumberOfMembers());
-
+                        if(checkDuplicatePresident(mathClub)){
+                        }
+                        else{
+                            clubView.getMathPanel().addNewRecord(newMember,mathClub);
+                            mathClub.addPresident(newMember);
+                            newFileHandler.appendFile(newMember.toString(),"MathClub.csv");
+                            sOPanel.setComboBoxItems(mathClub.getNumberOfMembers());
+                        }
                     }
                     else if (oPanel.getClubComboBoxIndex()==1) {
-                        clubView.getDancePanel().addNewRecord(newMember,danceClub);
-                        danceClub.addPresident(newMember);
-                        newFileHandler.appendFile(newMember.toString(),"DanceClub.csv");
-                        sOPanel.setComboBoxItems(danceClub.getNumberOfMembers());
-
-
+                        if (checkDuplicatePresident(danceClub)){
+                        }
+                        else{
+                            clubView.getDancePanel().addNewRecord(newMember,danceClub);
+                            danceClub.addPresident(newMember);
+                            newFileHandler.appendFile(newMember.toString(),"DanceClub.csv");
+                            sOPanel.setComboBoxItems(danceClub.getNumberOfMembers());
+                        }
                     }
                     else if(oPanel.getClubComboBoxIndex()==2){
-                        clubView.getPhotographyPanel().addNewRecord(newMember,photographyClub);
-                        photographyClub.addPresident(newMember);
-                        newFileHandler.appendFile(newMember.toString(),"PhotographyClub.csv");
-                        sOPanel.setComboBoxItems(photographyClub.getNumberOfMembers());
+                        if (checkDuplicatePresident(photographyClub)){
 
+                        }
+                        else{
+                            clubView.getPhotographyPanel().addNewRecord(newMember,photographyClub);
+                            photographyClub.addPresident(newMember);
+                            newFileHandler.appendFile(newMember.toString(),"PhotographyClub.csv");
+                            sOPanel.setComboBoxItems(photographyClub.getNumberOfMembers());
+                        }
                     }
                     sOPanel.getUpdateIndex().removeActionListener(updateIndex);
                     sOPanel.getDeleteIndex().removeActionListener(deleteIndex);
+                    oPanel.getPresidentField().setText("");
                 }
             }
         });
@@ -110,30 +120,41 @@ public class Main extends JFrame {
                     Member newMember = new Member(position,name,memberDepartment);
 
                     if(oPanel.getClubComboBoxIndex()==0){
-                        clubView.getMathPanel().addNewRecord(newMember,mathClub);
-                        mathClub.addVicePresident(newMember);
-                        newFileHandler.appendFile(newMember.toString(),"MathClub.csv");
-                        sOPanel.setComboBoxItems(mathClub.getNumberOfMembers());
+                        if(checkDuplicateVicePresident(mathClub)){
+
+                        }
+                        else{
+                            clubView.getMathPanel().addNewRecord(newMember,mathClub);
+                            mathClub.addVicePresident(newMember);
+                            newFileHandler.appendFile(newMember.toString(),"MathClub.csv");
+                            sOPanel.setComboBoxItems(mathClub.getNumberOfMembers());
+                        }
                     }
                     else if (oPanel.getClubComboBoxIndex()==1) {
-                        clubView.getDancePanel().addNewRecord(newMember,danceClub);
-                        danceClub.addVicePresident(newMember);
-                        newFileHandler.appendFile(newMember.toString(),"DanceClub.csv");
-                        sOPanel.setComboBoxItems(danceClub.getNumberOfMembers());
+                        if (checkDuplicateVicePresident(danceClub)){
 
+                        }
+                        else{
+                            clubView.getDancePanel().addNewRecord(newMember,danceClub);
+                            danceClub.addVicePresident(newMember);
+                            newFileHandler.appendFile(newMember.toString(),"DanceClub.csv");
+                            sOPanel.setComboBoxItems(danceClub.getNumberOfMembers());
+                        }
 
                     }
                     else if(oPanel.getClubComboBoxIndex()==2){
-                        clubView.getPhotographyPanel().addNewRecord(newMember,photographyClub);
-                        photographyClub.addVicePresident(newMember);
-                        newFileHandler.appendFile(newMember.toString(),"PhotographyClub.csv");
-                        sOPanel.setComboBoxItems(photographyClub.getNumberOfMembers());
-
-
+                        if (checkDuplicateVicePresident(photographyClub)){
+                        }
+                        else{
+                            clubView.getPhotographyPanel().addNewRecord(newMember,photographyClub);
+                            photographyClub.addVicePresident(newMember);
+                            newFileHandler.appendFile(newMember.toString(),"PhotographyClub.csv");
+                            sOPanel.setComboBoxItems(photographyClub.getNumberOfMembers());
+                        }
                     }
+                    oPanel.getVicePresidentField().setText("");
                     sOPanel.getUpdateIndex().addActionListener(updateIndex);
                     sOPanel.getDeleteIndex().addActionListener(deleteIndex);
-
                 }
             }
         });
@@ -148,18 +169,31 @@ public class Main extends JFrame {
                     Member newMember = new Member(position,name,memberDepartment);
 
                     if(oPanel.getClubComboBoxIndex()==0){
-                        clubView.getMathPanel().addNewRecord(newMember,mathClub);
-                        mathClub.addSecretary(newMember);
-                        newFileHandler.appendFile(newMember.toString(),"MathClub.csv");
-                        sOPanel.setComboBoxItems(mathClub.getNumberOfMembers());
-                    }
-                    else if(oPanel.getClubComboBoxIndex()==2){
-                        clubView.getPhotographyPanel().addNewRecord(newMember,photographyClub);
-                        photographyClub.addSecretary(newMember);
-                        newFileHandler.appendFile(newMember.toString(),"PhotographyClub.csv");
-                        sOPanel.setComboBoxItems(photographyClub.getNumberOfMembers());
+                        if(checkDuplicateSecretary(mathClub)){
+
+                        }
+                        else{
+                            clubView.getMathPanel().addNewRecord(newMember,mathClub);
+                            mathClub.addSecretary(newMember);
+                            newFileHandler.appendFile(newMember.toString(),"MathClub.csv");
+                            sOPanel.setComboBoxItems(mathClub.getNumberOfMembers());
+                        }
 
                     }
+                    else if(oPanel.getClubComboBoxIndex()==2){
+                        if (checkDuplicateSecretary(photographyClub)){
+
+                        }
+                        else{
+                            clubView.getPhotographyPanel().addNewRecord(newMember,photographyClub);
+                            photographyClub.addSecretary(newMember);
+                            newFileHandler.appendFile(newMember.toString(),"PhotographyClub.csv");
+                            sOPanel.setComboBoxItems(photographyClub.getNumberOfMembers());
+                        }
+
+
+                    }
+                    oPanel.getSecretaryField().setText("");
                     sOPanel.getUpdateIndex().addActionListener(updateIndex);
                     sOPanel.getDeleteIndex().addActionListener(deleteIndex);
 
@@ -177,11 +211,17 @@ public class Main extends JFrame {
                     Member newMember = new Member(position,name,memberDepartment);
 
                     if(oPanel.getClubComboBoxIndex()==1){
-                        clubView.getDancePanel().addNewRecord(newMember,danceClub);
-                        danceClub.addClubChoreographer(newMember);
-                        newFileHandler.appendFile(newMember.toString(),"DanceClub.csv");
-                        sOPanel.setComboBoxItems(danceClub.getNumberOfMembers());
+                        if (checkDuplicateChoreographer(danceClub)){
+
+                        }
+                        else{
+                            clubView.getDancePanel().addNewRecord(newMember,danceClub);
+                            danceClub.addClubChoreographer(newMember);
+                            newFileHandler.appendFile(newMember.toString(),"DanceClub.csv");
+                            sOPanel.setComboBoxItems(danceClub.getNumberOfMembers());
+                        }
                     }
+                    oPanel.getChoreographerField().setText("");
                     sOPanel.getUpdateIndex().addActionListener(updateIndex);
                     sOPanel.getDeleteIndex().addActionListener(deleteIndex);
                 }
@@ -443,6 +483,45 @@ public class Main extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(770,600);
         frame.setVisible(true);
+    }
+    public boolean checkDuplicatePresident(Club club){
+        for (Member member:club.memberList) {
+            if (member.toString().contains("President")){
+                JOptionPane.showMessageDialog(null,"President already Exists!","Invalid",JOptionPane.ERROR_MESSAGE);
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean checkDuplicateVicePresident(Club club){
+        for (Member member:club.memberList) {
+            if (member.toString().contains("Vice President")){
+                JOptionPane.showMessageDialog(null,"Vice President Exists!","Invalid",JOptionPane.ERROR_MESSAGE);
+                return true;
+            }
+        }
+        return false;
+
+    }
+    public boolean checkDuplicateSecretary(Club club){
+        for (Member member:club.memberList) {
+            if (member.toString().contains("Secretary")){
+                JOptionPane.showMessageDialog(null,"Secretary Exists!","Invalid",JOptionPane.ERROR_MESSAGE);
+                return true;
+            }
+        }
+        return false;
+
+    }
+    public boolean checkDuplicateChoreographer(Club club){
+        for (Member member:club.memberList) {
+            if (member.toString().contains("Choreographer")){
+                JOptionPane.showMessageDialog(null,"Choreographer Exists!","Invalid",JOptionPane.ERROR_MESSAGE);
+                return true;
+            }
+        }
+        return false;
+
     }
 
 
