@@ -3,53 +3,50 @@ import java.awt.*;
 
 public class OperationPanel extends JPanel {
     String[] clubNames = {"Math Club","Dance Club","Photography Club"};
-    JComboBox<String> clubs =new  JComboBox<>(clubNames);
+    String[] departments = {"PS","CLE","CAE","CAFAE","CASE","CBAE","CCE","CCJE","CEE","CHE","CHSE","CTE","TS","BED"};
     String[] mathClubPositions = {"President","Vice President","Member","Secretary","Choreographer"};
     JTextField presidentField = new JTextField();
     JTextField vicePresidentField = new JTextField();
     JTextField memberField = new JTextField();
     JTextField secretaryField = new JTextField();
-
     JTextField choreographerField = new JTextField();
-    JButton addMember = new JButton("Add Member");
-    String[] departments = {"PS","CLE","CAE","CAFAE","CASE","CBAE","CCE","CCJE","CEE","CHE","CHSE","CTE","TS","BED"};
-//    JTextField[] addMemberTextFields = {presidentField,vicePresidentField,memberField,secretaryField};
     JButton addPresidentButton = new JButton("Add");
     JButton addVicePresidentButton = new JButton("Add");
     JButton addMemberButton = new JButton("Add");
     JButton addSecretaryButton = new JButton("Add");
-
     JButton addChoreographerButton = new JButton("Add");
-
+    JComboBox<String> clubs =new  JComboBox<>(clubNames);
     JComboBox<String> addPresidentDepartments = new JComboBox<>(departments);
     JComboBox<String> addVicePresidentDepartment = new JComboBox<>(departments);
     JComboBox<String> addMemberDepartment = new JComboBox<>(departments);
     JComboBox<String> addSecretaryDepartment = new JComboBox<>(departments);
-
     JComboBox<String> addChoreographerDepartment = new JComboBox<>(departments);
+    JLabel addMemberTitle;
+    JLabel presidentLabel;
+    JLabel vicePresidentLabel;
+    JLabel memberLabel;
+    JLabel secretaryLabel;
+    JLabel choreographerLabel;
+
     OperationPanel(){
         this.setLayout(null);
-        JLabel addMemberTitle = new JLabel("Add Member");
+        addMemberTitle = new JLabel("Add Member");
         addMemberTitle.setBounds(5,10,290,25);
         addMemberTitle.setFont(new Font("Serif",Font.BOLD,20));
         addMemberTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        //Club drop down
         clubs.setBounds(5,45,170,25);
-        //Input Labels
-        JLabel president = new JLabel(mathClubPositions[0]);
-        president.setBounds(5,75,80,30);
 
-        JLabel vicePresident = new JLabel(mathClubPositions[1]);
-        vicePresident.setBounds(5,105,80,30);
 
-        JLabel Member = new JLabel(mathClubPositions[2]);
-        Member.setBounds(5,135,80,30);
-
-        JLabel secretary = new JLabel(mathClubPositions[3]);
-        secretary.setBounds(5,165,80,30);
-
-        JLabel choreographer = new JLabel(mathClubPositions[4]);
-        choreographer.setBounds(5,195,80,30);
+        presidentLabel = new JLabel(mathClubPositions[0]);
+        presidentLabel.setBounds(5,75,80,30);
+        vicePresidentLabel = new JLabel(mathClubPositions[1]);
+        vicePresidentLabel.setBounds(5,105,80,30);
+        memberLabel = new JLabel(mathClubPositions[2]);
+        memberLabel.setBounds(5,135,80,30);
+        secretaryLabel = new JLabel(mathClubPositions[3]);
+        secretaryLabel.setBounds(5,165,80,30);
+        choreographerLabel = new JLabel(mathClubPositions[4]);
+        choreographerLabel.setBounds(5,195,80,30);
 
 
         //input text fields
@@ -73,43 +70,28 @@ public class OperationPanel extends JPanel {
 
 
 
-        //add member button
-//        addMember.setBounds(35,220,125,35);
-
-
-        this.add(addMemberTitle);
         this.add(clubs);
-
-        this.add(president);
-        this.add(vicePresident);
-        this.add(Member);
-        this.add(secretary);
-        this.add(choreographer);
-
+        this.add(addMemberTitle);
+        this.add(presidentLabel);
+        this.add(vicePresidentLabel);
+        this.add(memberLabel);
+        this.add(secretaryLabel);
+        this.add(choreographerLabel);
         this.add(presidentField);
         this.add(vicePresidentField);
         this.add(memberField);
         this.add(secretaryField);
         this.add(choreographerField);
-
         this.add(addPresidentButton);
         this.add(addVicePresidentButton);
         this.add(addMemberButton);
         this.add(addSecretaryButton);
         this.add(addChoreographerButton);
-
         this.add(addPresidentDepartments);
         this.add(addVicePresidentDepartment);
         this.add(addMemberDepartment);
         this.add(addSecretaryDepartment);
         this.add(addChoreographerDepartment);
-
-//        this.add(addMember);
-
-
-    }
-    public JButton getAddMember(){
-        return addMember;
     }
     public JComboBox<String> getClubComboBox(){
         return clubs;
@@ -117,8 +99,6 @@ public class OperationPanel extends JPanel {
     public int getClubComboBoxIndex(){
         return clubs.getSelectedIndex();
     }
-
-
     public JButton getAddPresidentButton(){
         return addPresidentButton;
     }
@@ -133,19 +113,6 @@ public class OperationPanel extends JPanel {
     }
     public JButton getAddChoreographerButton(){
         return addChoreographerButton;
-    }
-
-//    public JComboBox<String> getAddPresidentDepartments(){
-//        return addPresidentDepartments;
-//    }
-//    public JComboBox<String> getAddVicePresidentDepartment(){
-//        return addVicePresidentDepartment;
-//    }
-//    public JComboBox<String> getAddMemberDepartment(){
-//        return addMemberDepartment;
-//    }
-    public JComboBox<String> getAddSecretaryDepartment(){
-        return addSecretaryDepartment;
     }
     public JComboBox<String> getAddChoreographerDepartment(){
         return addChoreographerDepartment;
@@ -165,13 +132,24 @@ public class OperationPanel extends JPanel {
     public JTextField getChoreographerField(){
         return choreographerField;
     }
-
-
-//    public JTextField[] getAddMemberTextFields(){
-//        return addMemberTextFields;
-//    }
-//    public String[] getMathClubPositions(){
-//        return mathClubPositions;
-//    }
-
+    public void setChoreographerInfoDisabled(){
+        choreographerField.setEditable(false);
+        addChoreographerButton.setEnabled(false);
+        addChoreographerDepartment.setEnabled(false);
+    }
+    public void setChoreographerInfoEnabled(){
+        choreographerField.setEditable(true);
+        addChoreographerButton.setEnabled(true);
+        addChoreographerDepartment.setEnabled(true);
+    }
+    public void setSecretaryInfoDisabled(){
+        secretaryField.setEditable(false);
+        addSecretaryButton.setEnabled(false);
+        addSecretaryDepartment.setEnabled(false);
+    }
+    public void setSecretaryInfoEnabled(){
+        secretaryField.setEditable(true);
+        addSecretaryButton.setEnabled(true);
+        addSecretaryDepartment.setEnabled(true);
+    }
 }

@@ -32,9 +32,5 @@ public class Club {
     public void addMembersToList(ArrayList<Member> list){
         memberList.addAll(list);
     }
-//    public void printList(){
-//        for(Member member: memberList){
-//            System.out.println(member.toString());
-//        }
-//    }
+
 }
