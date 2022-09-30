@@ -29,7 +29,7 @@ public class SecondOperationPanel extends JPanel {
         updateDelete.setFont(new Font("Serif",Font.BOLD,20));
         updateDelete.setHorizontalAlignment(SwingConstants.CENTER);
 
-
+        clubs.setSelectedIndex(0);
         clubs.setBounds(5,50,170,25);
 
         nameLabel.setBounds(68,69,40,30);

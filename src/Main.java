@@ -258,6 +258,7 @@ public class Main extends JFrame {
                         sOPanel.setComboBoxItems(photographyClub.getNumberOfMembers());
 
                     }
+                    oPanel.getMemberField().setText("");
                     sOPanel.getUpdateIndex().removeActionListener(updateIndex);
                     sOPanel.getDeleteIndex().removeActionListener(deleteIndex);
 
@@ -384,33 +385,49 @@ public class Main extends JFrame {
                 Member newMember = new Member(position,name,department);
                 if(!sOPanel.getNameField().getText().isEmpty()){
                     if(sOPanel.clubs.getSelectedIndex()==0){
-                        mathClub.getMemberList().set(memberIndex,newMember);
-                        clubView.getMathPanel().removeData();
-                        clubView.getMathPanel().updateTableRecord(mathClub);
-                        File myObj = new File("MathClub.csv");
-                        myObj.delete();
-                        for (Member member: mathClub.getMemberList()) {
-                            newFileHandler.appendFile(member.toString(),"MathClub.csv");
+                        if (checkDuplicatePosition(mathClub,position)){
+
+                        }
+                        else{
+                            mathClub.getMemberList().set(memberIndex,newMember);
+                            clubView.getMathPanel().removeData();
+                            clubView.getMathPanel().updateTableRecord(mathClub);
+                            File myObj = new File("MathClub.csv");
+                            myObj.delete();
+                            for (Member member: mathClub.getMemberList()) {
+                                newFileHandler.appendFile(member.toString(),"MathClub.csv");
+                            }
                         }
                     }
                     else if(sOPanel.clubs.getSelectedIndex()==1){
-                        danceClub.getMemberList().set(memberIndex,newMember);
-                        clubView.getDancePanel().removeData();
-                        clubView.getDancePanel().updateTableRecord(danceClub);
-                        File myObj = new File("DanceClub.csv");
-                        myObj.delete();
-                        for (Member member: danceClub.getMemberList()) {
-                            newFileHandler.appendFile(member.toString(),"DanceClub.csv");
+                        if(checkDuplicatePosition(danceClub,position)){
+
                         }
+                        else{
+                            danceClub.getMemberList().set(memberIndex,newMember);
+                            clubView.getDancePanel().removeData();
+                            clubView.getDancePanel().updateTableRecord(danceClub);
+                            File myObj = new File("DanceClub.csv");
+                            myObj.delete();
+                            for (Member member: danceClub.getMemberList()) {
+                                newFileHandler.appendFile(member.toString(),"DanceClub.csv");
+                            }
+                        }
+
                     }
                     else{
-                        photographyClub.getMemberList().set(memberIndex,newMember);
-                        clubView.getPhotographyPanel().removeData();
-                        clubView.getPhotographyPanel().updateTableRecord(photographyClub);
-                        File myObj = new File("PhotographyClub.csv");
-                        myObj.delete();
-                        for (Member member: photographyClub.getMemberList()) {
-                            newFileHandler.appendFile(member.toString(),"PhotographyClub.csv");
+                        if(checkDuplicatePosition(photographyClub,position)){
+
+                        }
+                        else{
+                            photographyClub.getMemberList().set(memberIndex,newMember);
+                            clubView.getPhotographyPanel().removeData();
+                            clubView.getPhotographyPanel().updateTableRecord(photographyClub);
+                            File myObj = new File("PhotographyClub.csv");
+                            myObj.delete();
+                            for (Member member: photographyClub.getMemberList()) {
+                                newFileHandler.appendFile(member.toString(),"PhotographyClub.csv");
+                            }
                         }
                     }
 
@@ -484,9 +501,33 @@ public class Main extends JFrame {
         frame.setSize(770,600);
         frame.setVisible(true);
     }
+    public boolean checkDuplicatePosition(Club club,String position){
+        if(position.equals("Member")){
+            return false;
+        }
+
+        if(!position.contains("Vice")){
+            for (Member member:club.getMemberList()) {
+                if (member.toString().contains(position)&&!member.toString().contains("Vice")){
+                    JOptionPane.showMessageDialog(null,position+" Already Exists!","Invalid",JOptionPane.ERROR_MESSAGE);
+                    return true;
+                }
+            }
+        }
+        else{
+            for(Member member:club.getMemberList()){
+                if(member.toString().contains("Vice")){
+                    JOptionPane.showMessageDialog(null,position+" Already Exists!","Invalid",JOptionPane.ERROR_MESSAGE);
+                    return true;
+                }
+
+            }
+        }
+        return false;
+    }
     public boolean checkDuplicatePresident(Club club){
         for (Member member:club.memberList) {
-            if (member.toString().contains("President")){
+            if (member.toString().contains("President")&& !member.toString().contains("Vice President")){
                 JOptionPane.showMessageDialog(null,"President already Exists!","Invalid",JOptionPane.ERROR_MESSAGE);
                 return true;
             }
