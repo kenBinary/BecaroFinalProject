@@ -28,8 +28,4 @@ public class ClubPanel extends JTabbedPane {
     public PhotographyClubPanel getPhotographyPanel() {
         return photographyPanel;
     }
-//    public JPanel[] getClubPanels(){
-//        JPanel[] clubs = {mathPanel,dancePanel,photographyPanel};
-//        return clubs;
-//    }
 }

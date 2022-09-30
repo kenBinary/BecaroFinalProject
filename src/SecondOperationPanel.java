@@ -111,9 +111,6 @@ public class SecondOperationPanel extends JPanel {
     public JButton getDelete(){
         return delete;
     }
-//    public String[] getDepartments(){
-//        return departments;
-//    }
     public JComboBox<Integer> getUpdateIndex(){
         return updateIndex;
     }
