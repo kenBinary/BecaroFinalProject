@@ -337,10 +337,32 @@ public class Main extends JFrame {
                                 newFileHandler.appendFile(member.toString(),"MathClub.csv");
                             }
                         }
+                        else{
+                            mathClub.getMemberList().get(memberIndex).setDepartment(department);
+                            mathClub.getMemberList().get(memberIndex).setName(name);
+                            clubView.getMathPanel().removeData();
+                            clubView.getMathPanel().updateTableRecord(mathClub);
+                            File myObj = new File("MathClub.csv");
+                            myObj.delete();
+                            for (Member member: mathClub.getMemberList()) {
+                                newFileHandler.appendFile(member.toString(),"MathClub.csv");
+                            }
+                        }
                     }
                     else if(subOperationPanel.clubs.getSelectedIndex()==1){
-                        if(checkDuplicatePosition(danceClub,position)){
+                        if(!checkDuplicatePosition(danceClub,position)){
                             danceClub.getMemberList().set(memberIndex,newMember);
+                            clubView.getDancePanel().removeData();
+                            clubView.getDancePanel().updateTableRecord(danceClub);
+                            File myObj = new File("DanceClub.csv");
+                            myObj.delete();
+                            for (Member member: danceClub.getMemberList()) {
+                                newFileHandler.appendFile(member.toString(),"DanceClub.csv");
+                            }
+                        }
+                        else{
+                            danceClub.getMemberList().get(memberIndex).setDepartment(department);
+                            danceClub.getMemberList().get(memberIndex).setName(name);
                             clubView.getDancePanel().removeData();
                             clubView.getDancePanel().updateTableRecord(danceClub);
                             File myObj = new File("DanceClub.csv");
@@ -351,8 +373,19 @@ public class Main extends JFrame {
                         }
                     }
                     else{
-                        if(checkDuplicatePosition(photographyClub,position)){
+                        if(!checkDuplicatePosition(photographyClub,position)){
                             photographyClub.getMemberList().set(memberIndex,newMember);
+                            clubView.getPhotographyPanel().removeData();
+                            clubView.getPhotographyPanel().updateTableRecord(photographyClub);
+                            File myObj = new File("PhotographyClub.csv");
+                            myObj.delete();
+                            for (Member member: photographyClub.getMemberList()) {
+                                newFileHandler.appendFile(member.toString(),"PhotographyClub.csv");
+                            }
+                        }
+                        else{
+                            photographyClub.getMemberList().get(memberIndex).setDepartment(department);
+                            photographyClub.getMemberList().get(memberIndex).setName(name);
                             clubView.getPhotographyPanel().removeData();
                             clubView.getPhotographyPanel().updateTableRecord(photographyClub);
                             File myObj = new File("PhotographyClub.csv");
