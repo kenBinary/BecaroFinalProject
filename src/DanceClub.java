@@ -3,7 +3,7 @@ public class DanceClub extends Club{
     public void addClubChoreographer(Member choreographerMember){
         super.memberList.add(choreographerMember);
     }
-    public void removeClubChoreographer(){
-
+    public void removeClubChoreographer(int memberIndex){
+        super.memberList.remove(memberIndex);
     }
 }
